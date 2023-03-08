@@ -7,6 +7,7 @@ import { Layout } from './Layout/Layout';
 import { Loader } from './Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import { current } from '../redux/auth/authOperations';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage/RegistrationPage'));
@@ -20,7 +21,7 @@ export default function App() {
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch()
+    dispatch(current());
   }, [dispatch]);
 
   return isRefreshing ? (
