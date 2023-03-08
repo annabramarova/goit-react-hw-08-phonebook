@@ -1,8 +1,6 @@
-// import { Loader } from 'components/Loader/Loader';
-// import { Loader } from 'components/Loader/Loader';
 import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/contacts/operations';
+import { deleteContact, fetchContacts } from 'redux/contacts/contactsOperations';
 import { selectContactsAmount, selectError, selectFilteredContacts,  selectFilteredTotalAmount} from 'redux/selectors';
 
 import {
@@ -29,7 +27,6 @@ const ContactList = () => {
 
   return (
     <Fragment>
-      {/* {isLoading && <Loader />} */}
       {error && <p>{error}</p>}
       {contactsAmount === 0 && <ListEmpty>Contacts list is empty</ListEmpty>}
       {filteredAmount=== 0 && <ListEmpty>Contact not found. Please try again or add a new one</ListEmpty>}

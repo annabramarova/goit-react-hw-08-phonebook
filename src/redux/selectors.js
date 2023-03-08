@@ -1,8 +1,16 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-export const selectContacts = ({contacts}) => contacts.items;
 
-export const selectFilter = ({ filter }) => filter;
+//auth selectors
+
+export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+
+export const selectUser = state => state.auth.user;
+
+export const selectIsRefreshing = state => state.auth.selectIsRefreshing;
+
+//contacts selectors
+export const selectContacts = ({contacts}) => contacts.items;
 
 export const selectContactsAmount = createSelector(
   [selectContacts],
@@ -12,6 +20,11 @@ export const selectContactsAmount = createSelector(
 export const selectIsLoading = state => state.contacts.isLoading;
 
 export const selectError = state => state.contacts.error;
+
+
+//filter selectors
+
+export const selectFilter = ({ filter }) => filter;
 
 export const selectFilteredContacts = createSelector([selectContacts, selectFilter], (contacts, filter) => {
     if (filter === '') {

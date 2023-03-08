@@ -5,7 +5,7 @@ import Notiflix from 'notiflix';
 import { Formik} from "formik";
 import { Input, Button, FormStyled, Label, Error} from './ContactForm.styled'
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
+import { addContact } from 'redux/contacts/contactsOperations';
 import { selectContacts } from 'redux/selectors';
 
 
