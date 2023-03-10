@@ -10,7 +10,7 @@ export const Navigation = () => {
   return (
     <Box as='header'>
       <Container maxW='container.xl'>
-        <Flex justifyContent='space-between' alignItems='center'>
+        <Flex justifyContent='space-between' alignItems='center' gap={4}> 
           <Flex gap={4} align="center">
             <Text as="h2" fontSize="xl" fontWeight="700">
               Welcome to PhoneBook

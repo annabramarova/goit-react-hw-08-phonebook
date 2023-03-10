@@ -4,41 +4,39 @@ export const instance = axios.create({
     baseURL: 'https://connections-api.herokuapp.com',
 })
 
-const setAuthHeader = token => {
-  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+const setToken = token => {
+  if (token) {
+    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common.authorization = '';
 };
-
-const clearAuthHeader = () => {
-  instance.defaults.headers.common.Authorization = '';
-};
-
 
 export const signup = async data => {
     const { data: result } = await instance.post('/users/signup', data);
-    setAuthHeader(result.token);
+    setToken(result.token);
     return result;
 };
 
 
 export const login = async data => {
     const { data: result } = await instance.post('/users/login', data);
-    setAuthHeader(result.token);
+    setToken(result.token);
     return result;
 };
 
-export const logout = async data => {
-    const { data: result } = await instance.post('/users/logout');
-    clearAuthHeader();
-    return result;
+export const logout = async () => {
+    const data = await instance.post('/users/logout');
+    setToken();
+    return data;
 };
 
 export const getCurrent = async token => {
     try {
-        setAuthHeader(token);
+        setToken(token);
         const res = await instance.get('/users/current');
         return res.data;
     } catch (error) {
-        clearAuthHeader();
+        setToken();
         return error.message;
     }
 };

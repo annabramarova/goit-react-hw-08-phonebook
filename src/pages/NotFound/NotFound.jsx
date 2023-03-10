@@ -6,7 +6,7 @@ export default function NotFound() {
     <>
       <Text
       fontSize='x1' color='#ff001b'  mb={4}>
-        Sorry, we couldn't find that psge ☹
+        Sorry, we couldn't find that page ☹
       </Text>
       <Text as={NavLink} to="/">
             Go home

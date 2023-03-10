@@ -9,7 +9,7 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { logout } from 'helpers/auth-api';
+import { logout } from 'redux/auth/authOperations';
 
 
 export const ModalLogOut = ({modalHandler}) => {

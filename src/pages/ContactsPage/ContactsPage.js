@@ -12,7 +12,7 @@ import Filter from "components/Filter";
 
 
 
-export default function ContactsPage() {
+export default function Contacts() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
 
@@ -25,17 +25,17 @@ export default function ContactsPage() {
             <Helmet>
                 <title>Contacts list</title>
             </Helmet>
-            <Flex justify="center" w="300px" mb={2}>
             <Heading as='h1' mb={5}>
                 My Contacts
             </Heading>
             <ContactForm />
             <Box>
             <Filter />
+            <Flex justify="center" w="300px" mb={2}>
             {isLoading && <Spinner color="gray.300" />}
-            <ContactList />
-            </Box>
             </Flex>
+                <ContactList />
+            </Box>
         </Fragment>
     )
 }

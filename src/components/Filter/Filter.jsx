@@ -1,24 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filter/filterSlice';
 import { selectFilter } from 'redux/selectors';
+import { AiOutlineSearch } from 'react-icons/ai'; // import the icon
 
-import { Input, Stack } from '@chakra-ui/react';
+import { Input, Stack, Flex, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
   return (
-    <Stack w='300px' mb={5}>
-    <label htmlFor='filter'>Find contact by Name </label>
-    <Input
-      type="text"
-      id='filter'
-      placeholder="Find a person"
-      value={filter}
-      onChange={e => dispatch(setFilter(e.target.value))}
-    />
-    </Stack>
+    <Flex alignItems='center' justifyContent='center'>
+      <Stack w={['80%', '60%', '40%']} mb={5}>
+        <label htmlFor='filter'>Find contact by Name </label>
+        <InputGroup>
+          <InputLeftElement pointerEvents='none'>
+            <AiOutlineSearch />
+          </InputLeftElement>
+          <Input
+            type='text'
+            id='filter'
+            placeholder='Find a person'
+            value={filter}
+            onChange={(e) => dispatch(setFilter(e.target.value))}
+          />
+        </InputGroup>
+      </Stack>
+    </Flex>
   );
 };
 
