@@ -5,15 +5,14 @@ import { ContactItem } from 'components/ContactItem';
 
 const ContactList = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
-  const sortedContacts = visibleContacts.sort(
-    (a, b) => a.name.localeCompare(b.name));
+  
 
   return (
-    <Flex as="ul" direction="column" gap={4}>
-      {sortedContacts.map(contact => (
-        <ContactItem key={contact.id} contact={contact}></ContactItem>
-      ))}
-    </Flex>
+      <Flex as="ul" direction="column" gap={4} alignItems='center' justifyContent='center'>
+        {visibleContacts.map(contact => (
+          <ContactItem key={contact.id} contact={contact}></ContactItem>
+        ))}
+      </Flex>
   );
 };
 

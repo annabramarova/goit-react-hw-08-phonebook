@@ -24,8 +24,8 @@ export default function Contacts() {
             <Helmet>
                 <title>Contacts list</title>
             </Helmet>
-            <Heading as='h1' mb={5}>
-                My Contacts
+            <Heading as='h1' mb={5} mt={5}>
+                My Contacts Profile
             </Heading>
             <ContactForm />
             <Box>

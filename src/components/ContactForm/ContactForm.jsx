@@ -61,7 +61,7 @@ export default function ContactForm() {
         <Box>
             <Formik initialValues={INITIAL_VALUES} validationSchema={schema} onSubmit={handleSubmit}>
                 {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-                    <Flex alignItems="center" justifyContent="center" mb={6}>
+                    <Flex alignItems="center" justifyContent="center">
                         <Box w="xl" p={8} borderWidth={1} borderRadius={8} boxShadow="lg">
                             <Box textAlign="center">
                                 <Heading>Add contact</Heading>

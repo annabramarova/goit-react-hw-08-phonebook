@@ -11,7 +11,7 @@ const Filter = () => {
 
   return (
     <Flex alignItems='center' justifyContent='center'>
-      <Stack w={['80%', '60%', '40%']} mb={5}>
+      <Stack w="xl" p={8}>
         <label htmlFor='filter'>Find contact by Name </label>
         <InputGroup>
           <InputLeftElement pointerEvents='none'>

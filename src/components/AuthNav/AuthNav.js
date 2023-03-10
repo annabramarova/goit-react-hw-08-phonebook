@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const AuthNav = () => {
   return (
-    <Flex gap={5}>
+    <Flex gap={4}>
       <Button
         as={NavLink}
         to="/register" 

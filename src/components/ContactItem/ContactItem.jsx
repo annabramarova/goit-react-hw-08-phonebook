@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Box, Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
-import { Fragment } from 'react';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 
 import { ModalEditContact } from 'components/ModalEditContact';
@@ -12,14 +11,15 @@ export const ContactItem = ({ contact }) => {
   const deleteModalHandler = useDisclosure();
 
     return (
-        <Fragment>
-             <Flex
+        <Flex
         as="li"
         justify="space-between"
         align="center"
+        w='100%'
+        maxW='xl'
         gap={6}
-        w="300px"
-        p={3}
+        px={8}
+        py={3}
         borderRadius="16px"
         boxShadow="0px 4px 18px -2px #c3d0dd"
       >
@@ -45,14 +45,12 @@ export const ContactItem = ({ contact }) => {
             <AiOutlineEdit />
           </Button>
         </Flex>
-      </Flex>
       {editModalHandler.isOpen && (
         <ModalEditContact contact={contact} modalHandler={editModalHandler} />
       )}
       {deleteModalHandler.isOpen && (
-        <ModalDeleteContact contact={contact} modalHandler={deleteModalHandler} />
-      )}
-    </Fragment>
+          <ModalDeleteContact contact={contact} modalHandler={deleteModalHandler} />)}
+        </Flex>
 )
 }
 
