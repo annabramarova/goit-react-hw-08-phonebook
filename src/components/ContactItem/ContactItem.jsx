@@ -8,7 +8,8 @@ import { ModalDeleteContact } from 'components/ModalDeleteContact';
 
 export const ContactItem = ({ contact }) => {
     const { name, number } = contact;
-    const { editModalHandler, deleteModalHandler } = useDisclosure();
+  const editModalHandler = useDisclosure();
+  const deleteModalHandler = useDisclosure();
 
     return (
         <Fragment>
@@ -53,7 +54,6 @@ export const ContactItem = ({ contact }) => {
       )}
     </Fragment>
 )
-
 }
 
 ContactItem.propTypes = {

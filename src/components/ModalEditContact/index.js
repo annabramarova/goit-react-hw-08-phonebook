@@ -1,1 +1,1 @@
-export { ModalEditContact } from './ModalEdit';
+export { ModalEditContact } from './ModalEditContact';

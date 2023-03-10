@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteContact } from 'redux/contacts/operations';
+import { deleteContact } from 'redux/contacts/contactsOperations';
 
 import {
   Button,
