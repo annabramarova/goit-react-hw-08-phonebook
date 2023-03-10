@@ -12,7 +12,7 @@ import Filter from "components/Filter";
 
 
 
-export default function Contacts() {
+export default function ContactsPage() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
 

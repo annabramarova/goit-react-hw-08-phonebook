@@ -1,103 +1,141 @@
-// import { Formik, Field } from "formik";
-// import {
-//   Box,
-//   Button,
-//   Checkbox,
-//   Flex,
-//   FormControl,
-//   FormLabel,
-//   FormErrorMessage,
-//   Input,
-//   VStack
-// } from "@chakra-ui/react";
-
-// export const LoginForm = () => {
-//     return (
-//         <Flex bg="gray.100" align="center" justify="center" h="100vh">
-//             <Box bg="white" p={6} rounded="md" w={64}>
-//                 <Formik
-//                     initialValues={{
-//                         email: "",
-//                         password: "",
-//                     }}
-//                     onSubmit={(values) => {
-//                         alert(JSON.stringify(values, null, 2));
-//                     }}
-//                 >
-//                     {({ handleSubmit, errors, touched }) => (
-//                         <form onSubmit={handleSubmit}>
-//                             <VStack spacing={4} align="flex-start">
-//                                 <FormControl>
-//                                     <FormLabel htmlFor="email">Email Address</FormLabel>
-//                                     <Field
-//                                         as={Input}
-//                                         id="email"
-//                                         name="email"
-//                                         type="email"
-//                                         variant="filled"
-//                                     />
-//                                 </FormControl>
-//                                 <FormControl isInvalid={!!errors.password && touched.password}>
-//                                     <FormLabel htmlFor="password">Password</FormLabel>
-//                                     <Field
-//                                         as={Input}
-//                                         id="password"
-//                                         name="password"
-//                                         type="password"
-//                                         variant="filled"
-//                                         validate={(value) => {
-//                                             let error;
-
-//                                             if (value.length < 6) {
-//                                                 error = "Password must contain at least 6 characters";
-//                                             }
-
-//                                             return error;
-//                                         }}
-//                                     />
-//                                     <FormErrorMessage>{errors.password}</FormErrorMessage>
-//                                 </FormControl>
-//                                 <Button type="submit" colorScheme="purple" width="full">
-//                                     Login
-//                                 </Button>
-//                             </VStack>
-//                         </form>
-//                     )}
-//                 </Formik>
-//             </Box>
-//         </Flex>
-//     );
-// };
-
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 
+import {
+  Stack,
+  Input,
+  Flex,
+  Button,
+  Text,
+  Box,
+  InputLeftElement,
+  InputGroup,
+  InputRightElement,
+} from '@chakra-ui/react';
+
+import {
+  AiOutlineMail,
+  AiFillLock,
+} from 'react-icons/ai';
+
+import {
+  RxEyeOpen,
+  RxEyeClosed
+} from 'react-icons/rx';
+
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 export const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState();
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      login({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
+  const handlePasswordVisibility = () => setShowPassword(!showPassword);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = data => {
+    dispatch(login(data));
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <Flex justify="center" align="canter">
+      <Flex
+        pos="relative"
+        justify="center"
+        align="canter"
+        direction="column"
+        w="400px"
+      >
+        <Text as="h1" align="center" fontWeight="700" fontSize="24px" mb={4}>
+          Sign in
+        </Text>
+
+        <Stack as="form" gap={3} onSubmit={handleSubmit(onSubmit)}>
+          <Box pos="relative">
+            <Text as="label" htmlFor="email">
+              Email
+            </Text>
+            <InputGroup mt={2}>
+              <Input
+                {...register('email', {
+                  required: 'Email is required',
+                })}
+                id="email"
+                type="email"
+              />
+              <InputLeftElement
+                pointerEvents="none"
+                children={<AiOutlineMail color="gray.300" />}
+              />
+            </InputGroup>
+            <Box position="absolute">
+              {errors?.email && (
+                <Text
+                  fontSize="xs"
+                  color="#ff001b"
+                  textShadow="rgb(0 0 0 / 25%) 0px 2px 2px"
+                >
+                  {errors?.email?.message || 'Error'}
+                </Text>
+              )}
+            </Box>
+          </Box>
+          <Box pos="relative">
+            <Text as="label" htmlFor="password">
+              Password
+            </Text>
+            <InputGroup mt={2}>
+              <Input
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 7,
+                    message: 'Min length is 7',
+                  },
+                })}
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+              />
+              <InputLeftElement
+                pointerEvents="none"
+                children={<AiFillLock color="gray.300" />}
+              />
+              <InputRightElement>
+                <Button
+                  background="transparent"
+                  p="0"
+                  w="100%"
+                  aria-label="Show hide password"
+                  _hover={{ bg: 'transparent' }}
+                  _focus={{ bg: 'transparent' }}
+                  onClick={handlePasswordVisibility}
+                >
+                  {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            <Box pos="absolute">
+              {errors?.password && (
+                <Text
+                  fontSize="xs"
+                  color="#ff001b"
+                  textShadow="rgb(0 0 0 / 25%) 0px 2px 2px"
+                >
+                  {errors?.password?.message || 'Error'}
+                </Text>
+              )}
+            </Box>
+          </Box>
+          <Button type="submit">Sign In</Button>
+        </Stack>
+      </Flex>
+    </Flex>
   );
 };

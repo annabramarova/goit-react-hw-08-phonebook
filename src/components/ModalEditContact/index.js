@@ -1,1 +1,1 @@
-export { Navigation } from './Navigation';
+export { ModalEditContact } from './ModalEdit';

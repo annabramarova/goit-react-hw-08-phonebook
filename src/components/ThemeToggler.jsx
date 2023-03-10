@@ -11,8 +11,6 @@ export const ThemeToggler = () => {
                 _hover={{ boxShadow: '0px 4px 18px -2px #c3d0dd' }}
                 onClick={toggleColorMode}
                 variant='ghost'
-                aria-label='Toggle theme mode'
-                title={`Activated ${colorMode} mode`}
             </IconButton>
         </Box>
     )

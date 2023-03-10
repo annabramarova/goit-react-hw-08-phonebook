@@ -1,1 +1,1 @@
-export { Navigation } from './Navigation';
+export { ModalDeleteContact } from './ModalDeleteContact';

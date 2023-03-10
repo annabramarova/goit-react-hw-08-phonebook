@@ -1,14 +1,26 @@
 import { useAuth } from "hooks/useAuth";
-import { useDispatch } from "react-redux"
-import { logout } from "redux/auth/authOperations";
+import { ModalLogOut } from "components/ModalLogOut"
+import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Fragment } from "react";
 
 export const UserMenu = () => {
-    const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const { user } = useAuth();
+
     return (
-        <div>
-            <p>{user.name}</p>
-            <button type='button' onClick={() => dispatch(logout())}>Logout</button>
-        </div>
+        <Fragment>
+            <Flex alignItems='center' gap={5}>
+            <Text fontSize="lg">Welcome, {user.name}</Text>
+            <Button
+            borderRadius="86% 14% 72% 28% / 44% 53% 47% 56%"
+            _hover={{ boxShadow: '0px 4px 18px -2px #c3d0dd' }}
+            type="submit"
+            onClick={onOpen}
+            >
+            Logout
+            </Button>
+            </Flex>
+            <ModalLogOut modalHandler={{ isOpen, onClose }} />
+        </Fragment>
     )
 };

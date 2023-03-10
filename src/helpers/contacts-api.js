@@ -14,3 +14,9 @@ export const deleteContactApi = async id => {
     const { data } = await instance.post(`/contacts/${id}`);
     return data;
 }; 
+
+export const updateContactApi = async ({ id, contact }) => {
+    const { data } = await instance.patch(`/contacts/${id}`, contact);
+    return data;
+}; 
+
