@@ -1,13 +1,14 @@
 import { Helmet } from 'react-helmet';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { Fragment } from 'react';
 
 export default function Register() {
   return (
-    <div>
+    <Fragment>
       <Helmet>
-        <title>Registration</title>
+        <title>Registration Page</title>
       </Helmet>
       <RegisterForm />
-    </div>
+    </Fragment>
   );
 }

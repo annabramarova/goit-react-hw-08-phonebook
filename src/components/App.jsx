@@ -3,7 +3,7 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/useAuth';
 
-import { Layout } from './Layout/Layout';
+import { Layout } from './Layout';
 import { Loader } from './Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';

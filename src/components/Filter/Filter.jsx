@@ -1,24 +1,24 @@
-import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filter/filterSlice';
 import { selectFilter } from 'redux/selectors';
-import { FilterName, Label} from './Filter.styled'
+
+import { Input, Stack } from '@chakra-ui/react';
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
   return (
-    <Fragment>
-    <Label>Find contact by Name </Label>
-    <FilterName
+    <Stack w='300px' mb={5}>
+    <label htmlFor='filter'>Find contact by Name </label>
+    <Input
       type="text"
-      name="filter"
+      id='filter'
       placeholder="Find a person"
       value={filter}
       onChange={e => dispatch(setFilter(e.target.value))}
     />
-    </Fragment>
+    </Stack>
   );
 };
 
