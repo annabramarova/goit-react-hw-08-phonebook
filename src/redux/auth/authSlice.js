@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, signup, current } from "./authOperations";
+import Notiflix from 'notiflix';
+
 
 const initialState = {
     user: {name: null, email: null},
@@ -15,6 +17,7 @@ const handlePending = state => { state.isLoading = true};
 const handleError = (state, { payload }) => {
     state.error = payload;
     state.isLoading = false;
+    Notiflix.Notify.warning('Invalid email or password. Try again');
 };
 
 const authSlice = createSlice({
