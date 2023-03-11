@@ -8,7 +8,8 @@ export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
 };
 
 
+
 RestrictedRoute.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  component: PropTypes.object.isRequired,
   redirectTo: PropTypes.string.isRequired,
 };
