@@ -7,6 +7,7 @@ import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { current } from 'redux/auth/authOperations';
+import { Preloader } from './Preloader/Preloader';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -24,7 +25,16 @@ export default function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    'Loading user data...'
+    <div
+      style={{
+        minHeight: 'calc(100vh - 50px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Preloader />
+    </div>
   )
     : ( 
     <Routes>
