@@ -16,7 +16,8 @@ export const ContactList = () => {
     <>
       {isLoading && <Spinner color="gray.300" />}  
       {error && <Flex alignItems='center' justifyContent='center' color="red">{error}</Flex>}
-      {contactsAmount > 0 ?<Flex as="ul" direction="column" gap={4} alignItems='center' justifyContent='center'>
+      {contactsAmount > 0 ?
+        <Flex as="ul" direction="column" gap={4} alignItems='center' justifyContent='center'>
         {filtered?.map(contact => (
           <ContactItem key={contact.id} contact={contact}></ContactItem>
         ))}
