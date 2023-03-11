@@ -11,6 +11,7 @@ import { current } from 'redux/auth/authOperations';
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 
 export default function App() {
@@ -28,11 +29,11 @@ export default function App() {
     : ( 
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Navigate to="/login" />}></Route>      
+        <Route exact index element={<Navigate to="/login" />}></Route>      
         <Route path="/login" element={<RestrictedRoute redirectTo='/contacts' component={<LoginPage />} />} />
         <Route path="/register" element={<RestrictedRoute redirectTo='/contacts' component={<RegistrationPage />} />} />
         <Route path="/contacts" element={<PrivateRoute redirectTo='/login' component={<ContactsPage />} />} />
-        <Route path="*" element=<Navigate to="/" /> />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
     );

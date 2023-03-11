@@ -1,21 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Flex, Spinner } from '@chakra-ui/react';
-import { selectContactsAmount, selectError, selectFilteredContacts, selectIsLoading } from 'redux/selectors';
+import { selectContactsAmount, selectError, selectFilter, selectFilteredContacts, selectFilteredTotalAmount, selectIsLoading } from 'redux/selectors';
 import { ContactItem } from 'components/ContactItem';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/contactsOperations';
 
 export const ContactList = () => {
   const filtered = useSelector(selectFilteredContacts);
-  const dispatch = useDispatch();
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const contactsAmount = useSelector(selectContactsAmount);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const filter = useSelector(selectFilter);  
+  const filteredAmount = useSelector(selectFilteredTotalAmount);
   
+
   return (
     <>
       {isLoading && <Spinner color="gray.300" />}  
@@ -25,8 +21,9 @@ export const ContactList = () => {
           <ContactItem key={contact.id} contact={contact}></ContactItem>
         ))}
       </Flex>
-      : <Flex alignItems='center' justifyContent='center' color="red">Contacts list is empty</Flex>}
-      </>
+        : <Flex alignItems='center' justifyContent='center' color="red">Contacts list is empty</Flex>}
+      {filter.length !== 0 && filteredAmount === 0 && <Flex alignItems='center' justifyContent='center' color="red">Contact not found. Please try again or add a new one</Flex> }
+    </>
   );
 };
 
