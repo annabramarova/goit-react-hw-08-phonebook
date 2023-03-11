@@ -21,15 +21,13 @@ export const ContactList = () => {
     <>
       {isLoading && <Spinner color="gray.300" />}  
       {error && <Flex alignItems='center' justifyContent='center' color="red">{error}</Flex>}
-      {contactsAmount === 0 && !isLoading && <Flex alignItems='center' justifyContent='center' color="red">Contacts list is empty</Flex>}
-      {filteredAmount === 0 && !isLoading && <Flex alignItems='center' justifyContent='center' color="red">Contact not found. Please try again or add a new one</Flex>}
-      {<Flex as="ul" direction="column" gap={4} alignItems='center' justifyContent='center'>
+      {contactsAmount > 0 ?<Flex as="ul" direction="column" gap={4} alignItems='center' justifyContent='center'>
         {filtered?.map(contact => (
           <ContactItem key={contact.id} contact={contact}></ContactItem>
         ))}
-      </Flex>}
-    </>
-      
+      </Flex>
+      : <Flex alignItems='center' justifyContent='center' color="red">Contacts list is empty</Flex>}
+      </>
   );
 };
 
