@@ -11,7 +11,6 @@ import { current } from 'redux/auth/authOperations';
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
-// const NotFound = lazy(() => import('pages/NotFound'));
 
 
 export default function App() {

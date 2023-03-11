@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import Notiflix from 'notiflix';
 
-import { ErrorMessage, Formik } from 'formik';
+import { Formik } from 'formik';
 import {
   Box,
   Button,
@@ -45,20 +45,22 @@ export function ContactForm() {
     const contacts = useSelector(selectContacts);
 
     function handleSubmit(contact, { resetForm }) {
-        if (
-            contacts.findIndex(
-                ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
-            ) !== -1
-        ) {
-            Notiflix.Notify.warning(`${contact.name} is already in contacts.`);            
-            resetForm();
-            return;
+        const nameExists = contacts.some(
+            ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+        );
+        const numberExists = contacts.some(({ number }) => number === contact.number);
+
+        if (nameExists) {
+            Notiflix.Notify.warning(`${contact.name} is already in contacts.`);
+        } else if (numberExists) {
+            Notiflix.Notify.warning(`Contact with number ${contact.number} already exists.`);
+        } else {
+            dispatch(addContact(contact));
         }
 
         resetForm();
-        dispatch(addContact(contact));
-    }
-
+        }
+        
     return (
         <Box>
             <Formik initialValues={INITIAL_VALUES} validationSchema={schema} onSubmit={handleSubmit}>
@@ -107,7 +109,6 @@ export function ContactForm() {
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                 />
-                                                <ErrorMessage name="number" component="p"/>
                                                 <InputRightElement pointerEvents="none" />
                                             </InputGroup>
                                             <Text fontSize="sm" color="red.500">

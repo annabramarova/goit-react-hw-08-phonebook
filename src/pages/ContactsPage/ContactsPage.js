@@ -1,9 +1,8 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { Box, Flex, Heading, Spinner } from '@chakra-ui/react';
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "redux/contacts/contactsOperations";
+import { useSelector } from "react-redux";
 import { selectIsLoading } from "redux/selectors";
 
 import { ContactForm } from "components/ContactForm";
@@ -12,12 +11,7 @@ import { Filter } from "components/Filter";
 
 
 export default function ContactsPage() {
-    const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
-
-    useEffect(() => {
-        dispatch(fetchContacts());
-    }, [dispatch]);
 
     return (
         <Fragment>
@@ -30,7 +24,7 @@ export default function ContactsPage() {
             <ContactForm />
             <Box>
             <Filter />
-            <Flex justify="center" w="300px" mb={2}>
+            <Flex justifyContent="center" alignItems='center' mb={2}>
             {isLoading && <Spinner color="gray.300" />}
             </Flex>
                 <ContactList />
