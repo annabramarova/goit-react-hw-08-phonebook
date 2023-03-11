@@ -62,10 +62,9 @@ export const ModalEditContact = ({contact, modalHandler}) => {
                   })}
                   type="text"
                 />
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<AiOutlineUser color="gray.300" />}
-                />
+                <InputLeftElement pointerEvents="none">
+                    <AiOutlineUser color="gray.300" />
+                </InputLeftElement>
               </InputGroup>
             </FormLabel>
             <Box position="absolute" top="95%">
@@ -94,11 +93,9 @@ export const ModalEditContact = ({contact, modalHandler}) => {
                   })}
                   type="tel"
                 />
-                <InputLeftElement
-                  pointerEvents="none"
-                  transform="rotate(-90deg) scale(-1) "
-                  children={<AiOutlinePhone color="gray.300" />}
-                />
+                <InputLeftElement pointerEvents="none" transform="rotate(-90deg) scale(-1)">
+                  <AiOutlinePhone color="gray.300" />
+                </InputLeftElement>
               </InputGroup>
             </FormLabel>
 
