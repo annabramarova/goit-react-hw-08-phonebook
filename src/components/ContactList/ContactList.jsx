@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex, Spinner } from '@chakra-ui/react';
-import { selectContactsAmount, selectError, selectFilteredContacts, selectFilteredTotalAmount, selectIsLoading } from 'redux/selectors';
+import { selectContactsAmount, selectError, selectFilteredContacts, selectIsLoading } from 'redux/selectors';
 import { ContactItem } from 'components/ContactItem';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';
