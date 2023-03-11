@@ -41,9 +41,9 @@ export const ModalEditContact = ({contact, modalHandler}) => {
     }
 
      return createPortal(
-    <Modal size="md" isOpen={isOpen} onClose={onClose}>
+    <Modal size="md" isOpen={isOpen} onClose={onClose} >
       <ModalOverlay />
-      <ModalContent p={3} maxW='container.xl'>
+      <ModalContent p={3}>
         <ModalCloseButton zIndex="docked" />
         <Stack as="form" gap={3} onSubmit={handleSubmit(onSubmit)}>
           <Box pos="relative">
