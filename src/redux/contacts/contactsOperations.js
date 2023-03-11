@@ -15,17 +15,8 @@ export const fetchContacts = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async (data, { rejectWithValue, getState }) => {
+  async (data, { rejectWithValue}) => {
     try {
-      const { contacts } = getState();
-      const isExist = contacts.items.some(
-        ({ number }) => number === data.number
-      );
-      if (isExist) {
-        return rejectWithValue({
-          message: `A contact with this number already exists`,
-        });
-      }
       const response = await axios.post('/contacts', data);
       return response.data;
     } catch (error) {

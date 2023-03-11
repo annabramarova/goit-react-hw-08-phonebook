@@ -27,7 +27,7 @@ export const ModalEditContact = ({contact, modalHandler}) => {
     const { id, name, number } = contact;
     const { isOpen, onClose } = modalHandler;
 
-    const { register, handleSubmit, reset, fromState: { errors } } = useForm({
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
             name,
             number,
@@ -43,7 +43,7 @@ export const ModalEditContact = ({contact, modalHandler}) => {
      return createPortal(
     <Modal size="md" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent p={3}>
+      <ModalContent p={3} maxW='container.xl'>
         <ModalCloseButton zIndex="docked" />
         <Stack as="form" gap={3} onSubmit={handleSubmit(onSubmit)}>
           <Box pos="relative">

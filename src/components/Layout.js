@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Fragment, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Container } from '@chakra-ui/react';
 import { ToastContainer } from 'react-toastify';
@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Layout = () => {
   return (
-    <Fragment>
+    <>
       <Navigation />
       <Container maxW='container.xl' pt={4} pb={5}>
         <Suspense fallback={null}>
@@ -19,6 +19,6 @@ export const Layout = () => {
         autoClose={1500}
         theme="colored"
         hideProgressBar="true"/>
-    </Fragment>
+    </>
   );
 };

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 import Notiflix from 'notiflix';
 
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import {
   Box,
   Button,
@@ -10,13 +10,14 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Stack,
-  Text,
+  Text
 } from '@chakra-ui/react';
+import {InputControl} from "formik-chakra-ui"; 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
 import { selectContacts } from 'redux/selectors';
@@ -39,7 +40,7 @@ const INITIAL_VALUES = {
   number: '',
 };
 
-export default function ContactForm() {
+export function ContactForm() {
     const dispatch = useDispatch();
     const contacts = useSelector(selectContacts);
 
@@ -49,12 +50,13 @@ export default function ContactForm() {
                 ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
             ) !== -1
         ) {
-            Notiflix.Notify.warning(`${contact.name} is already in contacts.`);
+            Notiflix.Notify.warning(`${contact.name} is already in contacts.`);            
+            resetForm();
             return;
         }
 
-        dispatch(addContact(contact));
         resetForm();
+        dispatch(addContact(contact));
     }
 
     return (
@@ -73,11 +75,14 @@ export default function ContactForm() {
                                             <FormLabel htmlFor="name">Name</FormLabel>
                                             <InputGroup>
                                                 <InputLeftElement pointerEvents="none" />
-                                                <Input
+                                                <InputControl 
                                                     type="text"
                                                     id="name"
+                                                    name="name"
                                                     placeholder="Enter name..."
                                                     value={values.name}
+                                                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                                                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                 />
@@ -91,14 +96,18 @@ export default function ContactForm() {
                                             <FormLabel htmlFor="number">Number</FormLabel>
                                             <InputGroup>
                                                 <InputLeftElement pointerEvents="none" />
-                                                <Input
+                                                <InputControl
                                                     type="tel"
                                                     id="number"
+                                                    name="number"
                                                     placeholder="Enter phone number..."
+                                                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                                                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                                                     value={values.number}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                 />
+                                                <ErrorMessage name="number" component="p"/>
                                                 <InputRightElement pointerEvents="none" />
                                             </InputGroup>
                                             <Text fontSize="sm" color="red.500">
@@ -110,6 +119,7 @@ export default function ContactForm() {
                                             mt={4}
                                             colorScheme="teal"
                                             isLoading={isSubmitting}
+                                            loadingText='Adding contact to phonebook'
                                             type="submit"
                                             isDisabled={!values.name || !values.number}
                                         >

@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai'; // import the icon
 
 import { Input, Stack, Flex, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
-const Filter = () => {
+export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
@@ -29,5 +29,3 @@ const Filter = () => {
     </Flex>
   );
 };
-
-export default Filter;

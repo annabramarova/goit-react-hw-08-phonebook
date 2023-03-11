@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/react';
 import { selectFilteredContacts } from 'redux/selectors';
 import { ContactItem } from 'components/ContactItem';
 
-const ContactList = () => {
+export const ContactList = () => {
   const visibleContacts = useSelector(selectFilteredContacts);
   
 
@@ -16,7 +16,6 @@ const ContactList = () => {
   );
 };
 
-export default ContactList;
 
 // import { Fragment, useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';

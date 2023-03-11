@@ -6,17 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/contacts/contactsOperations";
 import { selectIsLoading } from "redux/selectors";
 
-import ContactForm from "components/ContactForm";
-import ContactList from "components/ContactList";
-import Filter from "components/Filter";
+import { ContactForm } from "components/ContactForm";
+import {ContactList} from "components/ContactList";
+import { Filter } from "components/Filter";
 
 
-export default function Contacts() {
+export default function ContactsPage() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
 
     useEffect(() => {
-        dispatch(fetchContacts())
+        dispatch(fetchContacts());
     }, [dispatch]);
 
     return (
