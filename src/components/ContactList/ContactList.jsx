@@ -11,7 +11,6 @@ export const ContactList = () => {
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const contactsAmount = useSelector(selectContactsAmount);
-  const filteredAmount = useSelector(selectFilteredTotalAmount);
 
   useEffect(() => {
     dispatch(fetchContacts());
