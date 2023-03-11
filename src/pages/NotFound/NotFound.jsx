@@ -6,11 +6,11 @@ export default function NotFound() {
     <>
       <Text
       fontSize='x1' color='#ff001b'  mb={4}>
-        Sorry, we couldn't find that page ☹
+        Sorry, there is no such page ☹
       </Text>
       <Text as={NavLink} to="/">
             Go home
         </Text>
       </>
   );
-};
+}

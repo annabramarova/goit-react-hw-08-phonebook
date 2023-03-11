@@ -133,5 +133,5 @@ export function ContactForm() {
                     </Flex>)}
             </Formik>
         </Box>)
-};
-                        
+}
+            

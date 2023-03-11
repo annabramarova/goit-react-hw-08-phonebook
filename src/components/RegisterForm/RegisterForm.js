@@ -63,11 +63,10 @@ export const RegisterForm = () => {
                   })}
                   type="text"
                 />
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<AiOutlineUser color="gray.300" />}
-                />
-              </InputGroup>
+                <InputLeftElement pointerEvents="none">
+                  <AiOutlineUser color="gray.300" />
+                </InputLeftElement>
+                </InputGroup>
             </FormLabel>
             <Box position="absolute" top="90%">
               {errors?.name && (
@@ -89,10 +88,9 @@ export const RegisterForm = () => {
                   {...register('email', { required: 'Email is required' })}
                   type="email"
                 />
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<AiOutlineMail color="gray.300" />}
-                />
+                <InputLeftElement pointerEvents="none">
+                  <AiOutlineMail color="gray.300" />
+                </InputLeftElement>
               </InputGroup>
             </FormLabel>
             <Box position="absolute" top="90%">
@@ -121,10 +119,9 @@ export const RegisterForm = () => {
                   })}
                   type={showPassword ? 'text' : 'password'}
                 />
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<AiFillLock color="gray.300" />}
-                />
+                <InputLeftElement pointerEvents="none">
+                  <AiFillLock color="gray.300" />
+                </InputLeftElement>
                 <InputRightElement>
                   <Button
                     background="transparent"

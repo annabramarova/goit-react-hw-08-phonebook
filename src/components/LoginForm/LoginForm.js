@@ -70,11 +70,10 @@ export const LoginForm = () => {
                 id="email"
                 type="email"
               />
-              <InputLeftElement
-                pointerEvents="none"
-                children={<AiOutlineMail color="gray.300" />}
-              />
-            </InputGroup>
+              <InputLeftElement pointerEvents="none">
+                  <AiOutlineMail color="gray.300" />
+                </InputLeftElement>
+             </InputGroup>
             <Box position="absolute">
               {errors?.email && (
                 <Text
@@ -103,10 +102,9 @@ export const LoginForm = () => {
                 id="password"
                 type={showPassword ? 'text' : 'password'}
               />
-              <InputLeftElement
-                pointerEvents="none"
-                children={<AiFillLock color="gray.300" />}
-              />
+              <InputLeftElement pointerEvents="none">
+                  <AiFillLock color="gray.300" />
+                </InputLeftElement>
               <InputRightElement>
                 <Button
                   background="transparent"
