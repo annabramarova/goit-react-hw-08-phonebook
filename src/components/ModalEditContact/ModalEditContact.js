@@ -68,9 +68,16 @@ export const ModalEditContact = ({contact, modalHandler}) => {
         onClose();
   }
   
+  const handleConfirmClose = () => {
+    const shouldClose = window.confirm('Are you sure you want to discard changes?');
+
+    if (shouldClose) {
+      onClose();
+    }
+  };
   
     return createPortal(
-    <Modal size="md" isOpen={isOpen} onClose={null} >
+    <Modal size="md" isOpen={isOpen} onClose={handleConfirmClose} >
       <ModalOverlay />
       <ModalContent p={3}>
         <ModalCloseButton zIndex="docked" onClick={onClose}/>
