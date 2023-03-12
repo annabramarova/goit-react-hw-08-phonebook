@@ -31,11 +31,10 @@ import { useState } from 'react';
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState();
   const dispatch = useDispatch();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = data => {
     dispatch(signup(data));
-    reset();
   };
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 

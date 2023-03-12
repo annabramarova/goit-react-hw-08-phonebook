@@ -35,13 +35,11 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = data => {
     dispatch(login(data));
-    reset();
   };
 
   return (

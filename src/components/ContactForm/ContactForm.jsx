@@ -21,6 +21,7 @@ import {InputControl} from "formik-chakra-ui";
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
 import { selectContacts } from 'redux/selectors';
+import { useEffect } from 'react';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -41,26 +42,35 @@ const INITIAL_VALUES = {
 };
 
 export function ContactForm() {
-    const dispatch = useDispatch();
-    const contacts = useSelector(selectContacts);
+        const dispatch = useDispatch();
+        const contacts = useSelector(selectContacts);
 
-    function handleSubmit(contact, { resetForm }) {
+        const handleSubmit = async (values, { resetForm }) => {
+        try {
         const nameExists = contacts.some(
-            ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
+            ({ name }) => name.toLowerCase() === values.name.toLowerCase()
         );
-        const numberExists = contacts.some(({ number }) => number === contact.number);
+        const numberExists = contacts.some(({ number }) => number === values.number);
 
         if (nameExists) {
-            Notiflix.Notify.warning(`${contact.name} is already in contacts.`);
+            Notiflix.Notify.warning(`Contact ${values.name} is already in the phonebook`);
         } else if (numberExists) {
-            Notiflix.Notify.warning(`Contact with number ${contact.number} already exists.`);
+            Notiflix.Notify.warning(`Contact with number ${values.number} is already in the phonebook`);
         } else {
-            dispatch(addContact(contact));
+            dispatch(addContact(values));
+            resetForm();
         }
+        } catch (error) {
+        console.error(error);
+        }
+    };
 
-        resetForm();
+    useEffect(() => {
+        if (alert) {
+            return;
         }
-        
+    }, [alert]);
+            
     return (
         <Box>
             <Formik initialValues={INITIAL_VALUES} validationSchema={schema} onSubmit={handleSubmit}>

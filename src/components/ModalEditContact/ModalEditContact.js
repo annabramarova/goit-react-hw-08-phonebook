@@ -1,5 +1,7 @@
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
+
 import { useForm } from 'react-hook-form';
 import {
   Box,
@@ -18,6 +20,8 @@ import {
 import { AiOutlineUser, AiOutlinePhone } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { updateContact } from 'redux/contacts/contactsOperations';
+import { useSelector } from 'react-redux';
+import { selectContacts } from 'redux/selectors';
 
 
 const modalRoot = document.querySelector('#modal-root');
@@ -33,14 +37,39 @@ export const ModalEditContact = ({contact, modalHandler}) => {
             number,
         },
     });
+  
+    const contacts = useSelector(selectContacts);
 
     const onSubmit = data => {
+
+        const isNameUnique = contacts.every(
+          ({ id: contactId, name: contactName }) =>
+            contactName.toLowerCase() !== data.name.toLowerCase() ||
+            contactId === id
+        );
+
+        const isNumberUnique = contacts.every(
+          ({ id: contactId, number: contactNumber }) =>
+            contactNumber !== data.number || contactId === id
+        );
+
+        if (!isNameUnique) {
+          Notiflix.Notify.failure('This name already exists in your phonebook');
+          return;
+        }
+
+        if (!isNumberUnique) {
+          Notiflix.Notify.failure('This number already exists in your phonebook');
+          return;
+        }
+
         dispatch(updateContact({ id, data }));
         reset();
         onClose();
-    }
-
-     return createPortal(
+  }
+  
+  
+    return createPortal(
     <Modal size="md" isOpen={isOpen} onClose={onClose} >
       <ModalOverlay />
       <ModalContent p={3}>
