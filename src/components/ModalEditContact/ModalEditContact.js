@@ -70,10 +70,10 @@ export const ModalEditContact = ({contact, modalHandler}) => {
   
   
     return createPortal(
-    <Modal size="md" isOpen={isOpen} onClose={onClose} >
+    <Modal size="md" isOpen={isOpen} onClose={null} >
       <ModalOverlay />
       <ModalContent p={3}>
-        <ModalCloseButton zIndex="docked" />
+        <ModalCloseButton zIndex="docked" onClick={onClose}/>
         <Stack as="form" gap={3} onSubmit={handleSubmit(onSubmit)}>
           <Box pos="relative">
             <FormLabel>
